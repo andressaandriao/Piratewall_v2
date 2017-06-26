@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" href="styles.css">
+<title>Piratewall</title>
+
+<script>
+function getOption() {
+    if	(posTable < 6){
+    	var obj = document.getElementById("OptionList");
+    	
+    	var x = document.getElementById("Table").rows[posTable].cells;
+    	
+    	switch (obj.selectedIndex){
+    	
+    	case 0:
+    		x[0].innerHTML = "A";
+    		x[1].innerHTML = "In";
+    		x[2].innerHTML = "Externo";
+    		x[3].innerHTML = "Interno";
+    		x[4].innerHTML = "TCP";
+    		x[5].innerHTML = "> 123";
+    		x[6].innerHTML = "25";
+    		x[7].innerHTML = "Qualquer";
+    		x[8].innerHTML = "Permitir";
+    		break;
+    
+    	case 1:
+	    	x[0].innerHTML = "B";
+    		x[1].innerHTML = "Out";
+    		x[2].innerHTML = "Interno";
+    		x[3].innerHTML = "Externo";
+    		x[4].innerHTML = "TCP";
+    		x[5].innerHTML = "25";
+    		x[6].innerHTML = "> 123";
+    		x[7].innerHTML = "Sim";
+    		x[8].innerHTML = "Permitir";
+    		break;
+    
+    	case 2:
+    		x[0].innerHTML = "C";
+    		x[1].innerHTML = "Out";
+    		x[2].innerHTML = "Interno";
+    		x[3].innerHTML = "Externo";
+    		x[4].innerHTML = "TCP";
+    		x[5].innerHTML = "> 123";
+    		x[6].innerHTML = "25";
+    		x[7].innerHTML = "Qualquer";
+    		x[8].innerHTML = "Permitir";
+    		break;
+    
+    	case 3:
+    		x[0].innerHTML = "D";
+    		x[1].innerHTML = "In";
+    		x[2].innerHTML = "Externo";
+    		x[3].innerHTML = "Interno";
+    		x[4].innerHTML = "TCP";
+    		x[5].innerHTML = "25";
+    		x[6].innerHTML = "> 123";
+    		x[7].innerHTML = "Sim";
+    		x[8].innerHTML = "Permitir";
+    		break;
+    	
+    	case 4:
+    		x[0].innerHTML = "E";
+    		x[1].innerHTML = "Qualquer";
+    		x[2].innerHTML = "Qualquer";
+    		x[3].innerHTML = "Qualquer";
+    		x[4].innerHTML = "Qualquer";
+    		x[5].innerHTML = "Qualquer";
+    		x[6].innerHTML = "Qualquer";
+    		x[7].innerHTML = "Qualquer";
+    		x[8].innerHTML = "Negar";
+    		break;
+    	
+    	default:
+    		break;
+    	}
+    	    
+    	posTable++;
+    }
+}
+
+function Restart() {
+	var i,j;
+    var x;
+    
+    x = document.getElementById("Table").rows[1].cells;
+    x[0].style= "background-color:white;";
+    x[1].style= "background-color:white;";
+    x[2].style= "background-color:white;";
+    x[3].style= "background-color:white;";
+    x[4].style= "background-color:white;";
+    x[5].style= "background-color:white;";
+    x[6].style= "background-color:white;";
+	x[7].style= "background-color:white;";
+    x[8].style= "background-color:white;";
+    
+    for (i = 1; i<posTable; i++){
+    	x = document.getElementById("Table").rows[i].cells;
+    	for (j = 0; j < 9; j++){
+    		x[j].innerHTML = "-";
+    		x[j].style= "background-color:white;";
+    	}
+    }
+    posTable = 1;
+    packetNumber = 1;
+    stateNumber=1;
+    document.getElementById("GoodPack").style.display = "none";
+    document.getElementById("BadPack").style.display = "none";
+    document.getElementById("PacketTable").style.display = "none";
+    document.getElementById("startButton").value = "Começar";
+    document.getElementById("startButton").style.visibility = "visible";
+    document.getElementById("result").style.visibility = "hidden";
+    document.getElementById("final").style.visibility = "hidden";
+    document.getElementById("SadPirate").style.display = "none";
+    document.getElementById("HappyPirate").style.display = "none";
+    
+}
+
+function Start(){	
+	var x = document.getElementById("PacketTable").rows[1].cells;
+	var y, i, j;
+		
+	switch(stateNumber){
+			
+	case 1:
+	    document.getElementById("result").style.visibility = "hidden";
+		document.getElementById("PacketTable").style.display = "inline-table";
+		document.getElementById("startButton").value = "Próximo";
+		document.getElementById("GoodPack").style.display = "inline";
+		document.getElementById("BadPack").style.display = "none";
+		packetNumber++;
+		stateNumber++;
+		
+		x[0].innerHTML = "1";
+    	x[1].innerHTML = "In";
+    	x[2].innerHTML = "192.168.3.4 (Externo)";
+    	x[3].innerHTML = "172.16.1.1 (Interno)";
+    	x[4].innerHTML = "TCP";
+    	x[5].innerHTML = "1234";
+    	x[6].innerHTML = "25";
+    	x[7].innerHTML = "Sim";
+    
+    break;
+    
+    case 2:
+        stateNumber++;
+        if (posTable == 1){
+            document.getElementById("result").innerHTML = "O pacote foi aceito pela ausência de regras";
+            y = document.getElementById("Table").rows[1].cells;
+             y[0].style= "background-color:#00ad5b;";
+			y[1].style= "background-color:#00ad5b;";
+			y[2].style= "background-color:#00ad5b;";
+			y[3].style= "background-color:#00ad5b;";
+			y[4].style= "background-color:#00ad5b;";
+			y[5].style= "background-color:#00ad5b;";
+			y[6].style= "background-color:#00ad5b;";
+			y[7].style= "background-color:#00ad5b;";
+			y[8].style= "background-color:#00ad5b;";
+        }
+		for (i = 1; i < posTable; i++){
+			y = document.getElementById("Table").rows[i].cells;
+			if(y[0].innerHTML == "E"){
+				document.getElementById("result").innerHTML = "O pacote foi recusado pela regra E, que recusa absolutamente todos os pacotes";
+			    y[0].style= "background-color:#ff6666;";
+			    y[1].style= "background-color:#ff6666;";
+			    y[2].style= "background-color:#ff6666;";
+			    y[3].style= "background-color:#ff6666;";
+			    y[4].style= "background-color:#ff6666;";
+			    y[5].style= "background-color:#ff6666;";
+			    y[6].style= "background-color:#ff6666;";
+			    y[7].style= "background-color:#ff6666;";
+			    y[8].style= "background-color:#ff6666;";
+				break;
+			}
+			else{
+			    if(y[0].innerHTML == "A"){
+			        document.getElementById("result").innerHTML = "O pacote foi permitido pela regra A, que permite pacotes que entram na rede com endereço de origem externo com endereço de destino interno para protocolo TCP, porta de origem maior do que 123, porta de destino 25 (serviço SMTP) com qualquer flag ACK.";
+			        y[0].style= "background-color:#00ad5b;";
+			        y[1].style= "background-color:#00ad5b;";
+			        y[2].style= "background-color:#00ad5b;";
+			        y[3].style= "background-color:#00ad5b;";
+			        y[4].style= "background-color:#00ad5b;";
+			        y[5].style= "background-color:#00ad5b;";
+			        y[6].style= "background-color:#00ad5b;";
+			        y[7].style= "background-color:#00ad5b;";
+			        y[8].style= "background-color:#00ad5b;";
+			        break;
+			    }
+			    else{
+			        document.getElementById("result").innerHTML = "O pacote foi permitido pela falta de uma regra que o recusasse";
+			    }
+			}  
+		}
+		document.getElementById("result").style.visibility = "visible";
+		
+		break;
+		
+	case 3:
+	    if (posTable == 1){
+	        y = document.getElementById("Table").rows[1].cells;
+	        for (j = 0; j < 9; j++){
+    		    y[j].style= "background-color:white;";
+    	    }
+	    }
+	    for (i = 1; i<posTable; i++){
+    	    y = document.getElementById("Table").rows[i].cells;
+    	    for (j = 0; j < 9; j++){
+    		    y[j].style= "background-color:white;";
+    	    }
+        }
+	    document.getElementById("result").style.visibility = "hidden";
+		document.getElementById("GoodPack").style.display = "inline";
+		document.getElementById("BadPack").style.display = "none";
+		packetNumber++;
+		stateNumber++;
+		
+		x[0].innerHTML = "2";
+    	x[1].innerHTML = "Out";
+    	x[2].innerHTML = "172.16.1.1 (Interno)";
+    	x[3].innerHTML = "192.168.3.4 (Externo)";
+    	x[4].innerHTML = "TCP";
+    	x[5].innerHTML = "25";
+    	x[6].innerHTML = "1234";
+    	x[7].innerHTML = "Sim";
+		
+		break;
+		
+	case 4:
+	    stateNumber++;
+	    if (posTable == 1){
+            document.getElementById("result").innerHTML = "O pacote foi aceito pela ausência de regras";
+            y = document.getElementById("Table").rows[1].cells;
+          y[0].style= "background-color:#00ad5b;";
+			y[1].style= "background-color:#00ad5b;";
+			y[2].style= "background-color:#00ad5b;";
+			y[3].style= "background-color:#00ad5b;";
+			y[4].style= "background-color:#00ad5b;";
+			y[5].style= "background-color:#00ad5b;";
+			y[6].style= "background-color:#00ad5b;";
+			y[7].style= "background-color:#00ad5b;";
+			y[8].style= "background-color:#00ad5b;";
+        }
+		for (i = 1; i < posTable; i++){
+			y = document.getElementById("Table").rows[i].cells;
+			if(y[0].innerHTML == "E"){
+				document.getElementById("result").innerHTML = "O pacote foi recusado pela regra E, que recusa absolutamente todos os pacotes";
+				y[0].style= "background-color:#ff6666;";
+			    y[1].style= "background-color:#ff6666;";
+			    y[2].style= "background-color:#ff6666;";
+			    y[3].style= "background-color:#ff6666;";
+			    y[4].style= "background-color:#ff6666;";
+			    y[5].style= "background-color:#ff6666;";
+			    y[6].style= "background-color:#ff6666;";
+			    y[7].style= "background-color:#ff6666;";
+			    y[8].style= "background-color:#ff6666;";
+				break;
+			}
+			else{
+			    if(y[0].innerHTML == "B"){
+			        document.getElementById("result").innerHTML = "O pacote foi permitido pela regra B, que permite pacotes que saem da rede com endereço de origem interno, com endereço de destino externo para protocolo TCP, porta de origem 25 (serviço SMTP), porta de destino maior do que 123 com flag ACK ativada";
+			        y[0].style= "background-color:#00ad5b;";
+			        y[1].style= "background-color:#00ad5b;";
+			        y[2].style= "background-color:#00ad5b;";
+			        y[3].style= "background-color:#00ad5b;";
+			        y[4].style= "background-color:#00ad5b;";
+			        y[5].style= "background-color:#00ad5b;";
+			        y[6].style= "background-color:#00ad5b;";
+			        y[7].style= "background-color:#00ad5b;";
+			        y[8].style= "background-color:#00ad5b;";
+			        break;
+			    }
+			    else{
+			        document.getElementById("result").innerHTML = "O pacote foi aceito pela falta de uma regra que o recusasse";
+			    }
+			}
+		}
+		document.getElementById("result").style.visibility = "visible";
+		
+	    break;
+		
+	case 5:
+	    if (posTable == 1){
+	        y = document.getElementById("Table").rows[1].cells;
+	        for (j = 0; j < 9; j++){
+    		    y[j].style= "background-color:white;";
+    	    }
+	    }
+	    for (i = 1; i<posTable; i++){
+    	    y = document.getElementById("Table").rows[i].cells;
+    	    for (j = 0; j < 9; j++){
+    		    y[j].style= "background-color:white;";
+    	    }
+        }
+        document.getElementById("result").style.visibility = "hidden";
+		document.getElementById("GoodPack").style.display = "inline";
+		document.getElementById("BadPack").style.display = "none";
+		packetNumber++;
+		stateNumber++;
+				
+		x[0].innerHTML = "3";
+    	x[1].innerHTML = "Out";
+    	x[2].innerHTML = "172.16.1.1 (Interno)";
+    	x[3].innerHTML = "192.168.3.4 (Externo)";
+    	x[4].innerHTML = "TCP";
+    	x[5].innerHTML = "1357";
+    	x[6].innerHTML = "25";
+    	x[7].innerHTML = "Sim";
+    	
+    	break;
+    
+    case 6:
+        if (posTable == 1){
+            document.getElementById("result").innerHTML = "O pacote foi aceito pela ausência de regras";
+            y = document.getElementById("Table").rows[1].cells;
+            y[0].style= "background-color:#00ad5b;";
+			y[1].style= "background-color:#00ad5b;";
+			y[2].style= "background-color:#00ad5b;";
+			y[3].style= "background-color:#00ad5b;";
+			y[4].style= "background-color:#00ad5b;";
+			y[5].style= "background-color:#00ad5b;";
+			y[6].style= "background-color:#00ad5b;";
+			y[7].style= "background-color:#00ad5b;";
+			y[8].style= "background-color:#00ad5b;";
+        }
+	    stateNumber++;
+		for (i = 1; i < posTable; i++){
+			y = document.getElementById("Table").rows[i].cells;
+			if(y[0].innerHTML == "E"){
+				document.getElementById("result").innerHTML = "O pacote foi recusado pela regra E, que recusa absolutamente todos os pacotes";
+				y[0].style= "background-color:#ff6666;";
+			    y[1].style= "background-color:#ff6666;";
+			    y[2].style= "background-color:#ff6666;";
+			    y[3].style= "background-color:#ff6666;";
+			    y[4].style= "background-color:#ff6666;";
+			    y[5].style= "background-color:#ff6666;";
+			    y[6].style= "background-color:#ff6666;";
+			    y[7].style= "background-color:#ff6666;";
+			    y[8].style= "background-color:#ff6666;";
+				break;
+			}
+			else{
+			    if(y[0].innerHTML == "C"){
+			        document.getElementById("result").innerHTML = "O pacote foi permitido pela regra C, que permite pacotes que saem da rede com endereço de origem interno, com endereço de destino externo para protocolo TCP, porta de origem maior do que 123, porta de destino 25 (serviço SMTP) com qualquer flag ACK";
+			        y[0].style= "background-color:#00ad5b;";
+			        y[1].style= "background-color:#00ad5b;";
+			        y[2].style= "background-color:#00ad5b;";
+			        y[3].style= "background-color:#00ad5b;";
+			        y[4].style= "background-color:#00ad5b;";
+			        y[5].style= "background-color:#00ad5b;";
+			        y[6].style= "background-color:#00ad5b;";
+			        y[7].style= "background-color:#00ad5b;";
+			        y[8].style= "background-color:#00ad5b;";
+			        break;
+			    }
+			    else{
+			        document.getElementById("result").innerHTML = "O pacote foi aceito pela falta de uma regra que o recusasse";
+			    }
+			}
+		}
+		document.getElementById("result").style.visibility = "visible";
+		
+	    break;
+		
+	case 7:
+	    if (posTable == 1){
+	        y = document.getElementById("Table").rows[1].cells;
+	        for (j = 0; j < 9; j++){
+    		    y[j].style= "background-color:white;";
+    	    }
+	    }
+	    for (i = 1; i<posTable; i++){
+    	    y = document.getElementById("Table").rows[i].cells;
+    	    for (j = 0; j < 9; j++){
+    		    y[j].style= "background-color:white;";
+    	    }
+        }
+        document.getElementById("result").style.visibility = "hidden";
+		document.getElementById("GoodPack").style.display = "inline";
+		document.getElementById("BadPack").style.display = "none";
+		packetNumber++;
+		stateNumber++;
+		
+		x[0].innerHTML = "4";
+    	x[1].innerHTML = "In";
+    	x[2].innerHTML = "192.168.3.4 (Externo)";
+    	x[3].innerHTML = "172.16.1.1 (Interno)";
+    	x[4].innerHTML = "TCP";
+    	x[5].innerHTML = "25";
+    	x[6].innerHTML = "1357";
+    	x[7].innerHTML = "Sim";
+		
+		break;
+		
+    case 8:
+        if (posTable == 1){
+            document.getElementById("result").innerHTML = "O pacote foi aceito pela ausência de regras";
+            y = document.getElementById("Table").rows[1].cells;
+            y[0].style= "background-color:#00ad5b;";
+			y[1].style= "background-color:#00ad5b;";
+			y[2].style= "background-color:#00ad5b;";
+			y[3].style= "background-color:#00ad5b;";
+			y[4].style= "background-color:#00ad5b;";
+			y[5].style= "background-color:#00ad5b;";
+			y[6].style= "background-color:#00ad5b;";
+			y[7].style= "background-color:#00ad5b;";
+			y[8].style= "background-color:#00ad5b;";
+        }
+	    stateNumber++;
+		for (i = 1; i < posTable; i++){
+			y = document.getElementById("Table").rows[i].cells;
+			if(y[0].innerHTML == "E"){
+				document.getElementById("result").innerHTML = "O pacote foi recusado pela regra E, que recusa absolutamente todos os pacotes";
+				y[0].style= "background-color:#ff6666;";
+			    y[1].style= "background-color:#ff6666;";
+			    y[2].style= "background-color:#ff6666;";
+			    y[3].style= "background-color:#ff6666;";
+			    y[4].style= "background-color:#ff6666;";
+			    y[5].style= "background-color:#ff6666;";
+			    y[6].style= "background-color:#ff6666;";
+			    y[7].style= "background-color:#ff6666;";
+			    y[8].style= "background-color:#ff6666;";
+				break;
+			}
+			else{
+			    if(y[0].innerHTML == "D"){
+			        document.getElementById("result").innerHTML = "O pacote foi permitido pela regra D, que permite pacotes que entram na rede com endereço de origem externo com endereço de destino interno para protocolo TCP, porta de origem 25 (serviço SMTP), porta de destino maior do que 123 com flag ACK ativada";
+			        y[0].style= "background-color:#00ad5b;";
+			        y[1].style= "background-color:#00ad5b;";
+			        y[2].style= "background-color:#00ad5b;";
+			        y[3].style= "background-color:#00ad5b;";
+			        y[4].style= "background-color:#00ad5b;";
+			        y[5].style= "background-color:#00ad5b;";
+			        y[6].style= "background-color:#00ad5b;";
+			        y[7].style= "background-color:#00ad5b;";
+			        y[8].style= "background-color:#00ad5b;";
+			        break;
+			    }
+			    else{
+			        document.getElementById("result").innerHTML = "O pacote foi aceito pela falta de uma regra que o recusasse";
+			    }
+			}
+		}
+		document.getElementById("result").style.visibility = "visible";
+		
+	    break;
+		
+	case 9:
+	    if (posTable == 1){
+	        y = document.getElementById("Table").rows[1].cells;
+	        for (j = 0; j < 9; j++){
+    		    y[j].style= "background-color:white;";
+    	    }
+	    }
+	    for (i = 1; i<posTable; i++){
+    	    y = document.getElementById("Table").rows[i].cells;
+    	    for (j = 0; j < 9; j++){
+    		    y[j].style= "background-color:white;";
+    	    }
+        }
+        document.getElementById("result").style.visibility = "hidden";
+		document.getElementById("GoodPack").style.display = "none";
+		document.getElementById("BadPack").style.display = "inline";
+		document.getElementById("HappyPirate").style.display = "inline";
+		document.getElementById("SadPirate").style.display = "none";
+		packetNumber++;
+		stateNumber++;
+		
+		x[0].innerHTML = "5";
+    	x[1].innerHTML = "In";
+    	x[2].innerHTML = "10.1.2.3 (Externo)";
+    	x[3].innerHTML = "172.16.1.1 (Interno)";
+    	x[4].innerHTML = "TCP";
+    	x[5].innerHTML = "5150";
+    	x[6].innerHTML = "6000";
+    	x[7].innerHTML = "Sim";
+		
+		break;
+
+    case 10:
+	    stateNumber++;
+	    if (posTable == 1){
+            document.getElementById("result").innerHTML = "O pacote foi aceito pela ausência de regras";
+            y = document.getElementById("Table").rows[1].cells;
+            y[0].style= "background-color:#00ad5b;";
+			y[1].style= "background-color:#00ad5b;";
+			y[2].style= "background-color:#00ad5b;";
+			y[3].style= "background-color:#00ad5b;";
+			y[4].style= "background-color:#00ad5b;";
+			y[5].style= "background-color:#00ad5b;";
+			y[6].style= "background-color:#00ad5b;";
+			y[7].style= "background-color:#00ad5b;";
+			y[8].style= "background-color:#00ad5b;";
+        }
+		for (i = 1; i < posTable; i++){
+			y = document.getElementById("Table").rows[i].cells;
+			if(y[0].innerHTML == "E"){
+				document.getElementById("result").innerHTML = "O pacote foi recusado pela regra E, que recusa absolutamente todos os pacotes";
+				document.getElementById("HappyPirate").style.display = "none";
+		        document.getElementById("SadPirate").style.display = "inline";
+				y[0].style= "background-color:#ff6666;";
+			    y[1].style= "background-color:#ff6666;";
+			    y[2].style= "background-color:#ff6666;";
+			    y[3].style= "background-color:#ff6666;";
+			    y[4].style= "background-color:#ff6666;";
+			    y[5].style= "background-color:#ff6666;";
+			    y[6].style= "background-color:#ff6666;";
+			    y[7].style= "background-color:#ff6666;";
+			    y[8].style= "background-color:#ff6666;";
+				break;
+			}
+			else{
+			    document.getElementById("result").innerHTML = "O pacote foi aceito pela falta de uma regra que o recusasse";
+			}
+		}
+		document.getElementById("result").style.visibility = "visible";
+		
+	    break;
+		
+	case 11:
+	    if (posTable == 1){
+	        y = document.getElementById("Table").rows[1].cells;
+	        for (j = 0; j < 9; j++){
+    		    y[j].style= "background-color:white;";
+    	    }
+	    }
+	    for (i = 1; i<posTable; i++){
+    	    y = document.getElementById("Table").rows[i].cells;
+    	    for (j = 0; j < 9; j++){
+    		    y[j].style= "background-color:white;";
+    	    }
+        }
+        document.getElementById("result").style.visibility = "hidden";
+		document.getElementById("GoodPack").style.display = "none";
+		document.getElementById("BadPack").style.display = "inline";
+		document.getElementById("HappyPirate").style.display = "inline";
+		document.getElementById("SadPirate").style.display = "none";
+		packetNumber++;
+		stateNumber++;
+		
+		x[0].innerHTML = "6";
+    	x[1].innerHTML = "Out";
+    	x[2].innerHTML = "172.16.3.4 (Interno)";
+    	x[3].innerHTML = "10.1.2.3 (Externo)";
+    	x[4].innerHTML = "TCP";
+    	x[5].innerHTML = "6000";
+    	x[6].innerHTML = "5150";
+    	x[7].innerHTML = "Sim";
+    	
+		break;
+
+    case 12:
+	    stateNumber++;
+	    if (posTable == 1){
+            document.getElementById("result").innerHTML = "O pacote foi aceito pela ausência de regras";
+            y = document.getElementById("Table").rows[1].cells;
+            y[0].style= "background-color:#00ad5b;";
+			y[1].style= "background-color:#00ad5b;";
+			y[2].style= "background-color:#00ad5b;";
+			y[3].style= "background-color:#00ad5b;";
+			y[4].style= "background-color:#00ad5b;";
+			y[5].style= "background-color:#00ad5b;";
+			y[6].style= "background-color:#00ad5b;";
+			y[7].style= "background-color:#00ad5b;";
+			y[8].style= "background-color:#00ad5b;";
+        }
+		for (i = 1; i < posTable; i++){
+			y = document.getElementById("Table").rows[i].cells;
+			if(y[0].innerHTML == "E"){
+				document.getElementById("result").innerHTML = "O pacote foi recusado pela regra E, que recusa absolutamente todos os pacotes";
+				document.getElementById("HappyPirate").style.display = "none";
+		        document.getElementById("SadPirate").style.display = "inline";
+				y[0].style= "background-color:#ff6666;";
+			    y[1].style= "background-color:#ff6666;";
+			    y[2].style= "background-color:#ff6666;";
+			    y[3].style= "background-color:#ff6666;";
+			    y[4].style= "background-color:#ff6666;";
+			    y[5].style= "background-color:#ff6666;";
+			    y[6].style= "background-color:#ff6666;";
+			    y[7].style= "background-color:#ff6666;";
+			    y[8].style= "background-color:#ff6666;";
+				break;
+			}
+			else{
+			    document.getElementById("result").innerHTML = "O pacote foi aceito pela falta de uma regra que o recusasse";
+			}
+		}
+		document.getElementById("result").style.visibility = "visible";
+		
+	    break;
+		
+	case 13:
+	    if (posTable == 1){
+	        y = document.getElementById("Table").rows[1].cells;
+	        for (j = 0; j < 9; j++){
+    		    y[j].style= "background-color:white;";
+    	    }
+	    }
+	    for (i = 1; i<posTable; i++){
+    	    y = document.getElementById("Table").rows[i].cells;
+    	    for (j = 0; j < 9; j++){
+    		    y[j].style= "background-color:white;";
+    	    }
+        }
+        document.getElementById("result").style.visibility = "hidden";
+		document.getElementById("GoodPack").style.display = "none";
+		document.getElementById("BadPack").style.display = "inline";
+		document.getElementById("HappyPirate").style.display = "inline";
+		document.getElementById("SadPirate").style.display = "none";
+		stateNumber++;
+		
+		x[0].innerHTML = "7";
+    	x[1].innerHTML = "In";
+    	x[2].innerHTML = "10.1.2.3 (Externo)";
+    	x[3].innerHTML = "172.16.3.4 (Interno)";
+    	x[4].innerHTML = "TCP";
+    	x[5].innerHTML = "5150";
+    	x[6].innerHTML = "6000";
+    	x[7].innerHTML = "Não";
+    	
+		break;
+		
+    case 14:
+        document.getElementById("startButton").style.visibility = "hidden";
+        if (posTable == 1){
+            document.getElementById("result").innerHTML = "O pacote foi aceito pela ausência de regras";
+            y = document.getElementById("Table").rows[1].cells;
+            y[0].style= "background-color:#00ad5b;";
+			y[1].style= "background-color:#00ad5b;";
+			y[2].style= "background-color:#00ad5b;";
+			y[3].style= "background-color:#00ad5b;";
+			y[4].style= "background-color:#00ad5b;";
+			y[5].style= "background-color:#00ad5b;";
+			y[6].style= "background-color:#00ad5b;";
+			y[7].style= "background-color:#00ad5b;";
+			y[8].style= "background-color:#00ad5b;";
+        }
+		for (i = 1; i < posTable; i++){
+			y = document.getElementById("Table").rows[i].cells;
+			if(y[0].innerHTML == "E"){
+				document.getElementById("result").innerHTML = "O pacote foi recusado pela regra E, que recusa absolutamente todos os pacotes";
+				document.getElementById("HappyPirate").style.display = "none";
+		        document.getElementById("SadPirate").style.display = "inline";
+				y[0].style= "background-color:#ff6666;";
+			    y[1].style= "background-color:#ff6666;";
+			    y[2].style= "background-color:#ff6666;";
+			    y[3].style= "background-color:#ff6666;";
+			    y[4].style= "background-color:#ff6666;";
+			    y[5].style= "background-color:#ff6666;";
+			    y[6].style= "background-color:#ff6666;";
+			    y[7].style= "background-color:#ff6666;";
+			    y[8].style= "background-color:#ff6666;";
+				break;
+			}
+			else{
+			    document.getElementById("result").innerHTML = "O pacote foi aceito pela falta de uma regra que o recusasse";
+			}
+		}
+		document.getElementById("final").innerHTML = "A simulação acabou! Pressione o botão Reiniciar para recomeçá-la ou pressione a seta para retornar à seleção de atributos.";
+		document.getElementById("final").style.visibility = "visible";
+		
+		document.getElementById("result").style.visibility = "visible";
+		
+	    break;		
+	}
+}
+
+</script>
+
+</head>
+
+<body>
+<h1>Simulador: Filtro de Pacotes Tradicional</h1>
+
+<script>
+var posTable = 1; <!-- Usada para anotar a posicao atual na tabela -->
+var packetNumber = 1; <!--Usado para anotar qual o ultimo pacote enviado -->
+var stateNumber = 1; <!--Usado para controlar os estados-->
+</script>
+
+<table id="Table">
+  <tr>
+    <td>Regra</td>
+    <td>Direção</td>
+    <td>Endereço de origem</td>
+    <td>Endereço de destino</td>
+    <td>Protocolo</td>
+    <td>Porta de origem</td>
+    <td>Porta de destino</td>
+    <td>ACK</td>
+    <td>Permissão</td>
+  </tr>
+  <tr>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+  </tr>
+  <tr>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+  </tr>
+   <tr>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+  </tr>
+   <tr>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+  </tr>
+   <tr>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+    <td> - </td>
+  </tr>
+</table>
+<br> 
+
+<img src="images/GoodPack.png" alt="Good Pack" style="height:100px;width:100px;display:none;position:relative;left:320px;" id="GoodPack">
+
+<img src="images/BadPack.png" alt="Bad Pack" style="height:100px;width:100px;display:none;position:relative;left:320px;" id="BadPack">
+
+<img src="images/piratas.png" alt="Piratas" style="width:305px;height:243px;position:absolute;right:70px;top:160px;display:none;" id="HappyPirate">
+
+<img src="images/piratas_triste.png" alt="Piratas" style="width:305px;height:243px;position:absolute;right:70px;top:160px;display:none;" id="SadPirate">
+
+<br/>
+
+<table id="PacketTable" style="display:none">
+  <tr>
+    <td>Pacote</td>
+    <td>Direção</td>
+    <td>Endereço de origem</td>
+    <td>Endereço de destino</td>
+    <td>Protocolo</td>
+    <td>Porta de origem</td>
+    <td>Porta de destino</td>
+    <td>ACK</td>
+  </tr>
+   <tr>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+ </table>
+<br/>
+<br/>
+
+<input type="button" onclick="Start()" value="Começar" style="width:200px;background:#00ad5b;color:white;height:45px;font-size:20px;position:absolute;right:10px;top:100px;" id="startButton">
+
+<input type="button" onclick="Restart()" value="Reiniciar" style="width:200px;background:#ff6666;color:white;height:45px;font-size:20px;position:absolute;right:220px;top:100px;">
+
+<form>
+<select id="OptionList" style="height:20px;font-size:13px;">
+  <option>Regra A: Permitir pacotes TCP com direção de entrada, endereço de origem externo e endereço de destino interno (Porta de Origem > 123; porta de destino = 25)</option>
+  <option>Regra B: Permitir pacotes TCP com direção de saída, endereço de origem interno e endereço de destino externo (Porta de Origem = 25; porta de destino > 123)</option>
+  <option>Regra C: Permitir pacotes TCP com direção de saída, endereço de origem interno e endereço de destino externo (Porta de Origem > 123; porta de destino = 25)</option>
+  <option>Regra D: Permitir pacotes TCP com direção de entrada, endereço de origem externo e endereço de destino interno (Porta de Origem = 25; porta de destino > 123)</option>
+   <option>Regra E: Negar qualquer tipo de pacote</option>
+</select>
+<input type="button" onclick="getOption()" value="Adicionar">
+</form>
+
+<p id="result" style="visibility:hidden"></p>
+
+<p id="final" style="visibility:hidden"></p>
+
+<a href="opcoes_simulador.html">
+	<img src="images/seta_esq.png" alt="Anterior" style="width:5%;height;5%;position:absolute;left:20px;">
+</a>
+</body>
+
+</html>

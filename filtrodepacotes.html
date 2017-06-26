@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" href="styles.css">
+<title>Piratewall</title>
+</head>
+
+<body>
+<h1>Filtro de Pacotes</h1>
+
+<img src="images/Filtro.png" alt="Firewalls" style="width:70%;height:70%; position:relative;left:15%;">
+
+<p style="text-align:left">
+O filtro de pacotes, tanto o tradicional quanto o com controle de estado, pode ser visto como um filtro, exatamente como o nome sugere, cujo papel é permitir/negar pacotes dadas algumas circunstâncias.<br/><br/>
+
+Como pode ser visto no esquema, nem sempre os pacotes rejeitados serão de usuários com intenções maliciosas, eles podem simplesmente não fazer parte da política de acesso à rede interna. Um exemplo disso seria caso o administrador de rede quisesse impedir o uso do serviço TELNET. Nesse caso, qualquer pacote deste serviço que tentar passar pelo filtro será rejeitado. Apesar de não ser mostrado no esquema, é possível também que por má configuração do <i>firewall</i> alguns pacotes maliciosos passem. Este caso será mais explorado no simulador.<br/><br/>
+
+Obs.: No esquema mostra apenas o filtro que ocorre dos pacotes que entram na rede a partir da internet, porém o mesmo filtro é aplicado com regras diferentes para os pacotes que saem da rede interna e vão em direção à Internet.
+</p>
+<a href="hierarquia.html">
+	<img src="images/seta_esq.png" alt="Anterior" style="width:5%;height;5%;position:absolute;left:20px;">
+</a>
+<a href="roteador.html">
+	<img src="images/seta_dir.png" alt="Proximo" style="width:5%;height;5%;position:absolute;right:20px;">
+</a>
+</body>
+
+</html>

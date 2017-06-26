@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" href="styles.css">
+<title>Piratewall</title>
+</head>
+
+<body>
+<h1>Tabela de Regras</h1>
+
+<table id="Table" style="position:relative;left:18%;">
+  <tr>
+    <td>Regra</td>
+    <td>Direção</td>
+    <td>Endereço de origem</td>
+    <td>Endereço de destino</td>
+    <td>Protocolo</td>
+    <td>Porta de origem</td>
+    <td>Porta de destino</td>
+    <td>ACK</td>
+    <td>Permissão</td>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td>In</td>
+    <td>Externo</td>
+    <td>Interno</td>
+    <td>TCP</td>
+    <td>> 123</td>
+    <td>25</td>
+    <td>Qualquer</td>
+    <td>Permitir</td>
+  </tr>
+  <tr>
+    <td>B</td>
+    <td>Out</td>
+    <td>Interno</td>
+    <td>Externo</td>
+    <td>TCP</td>
+    <td>25</td>
+    <td>> 123</td>
+    <td>Sim</td>
+    <td>Permitir</td>
+  </tr>
+   <tr>
+    <td>C</td>
+    <td>Out</td>
+    <td>Interno</td>
+    <td>Externo</td>
+    <td>TCP</td>
+    <td>> 123</td>
+    <td>25</td>
+    <td>Qualquer</td>
+    <td>Permitir</td>
+  </tr>
+   <tr>
+    <td>D</td>
+    <td>In</td>
+    <td>Externo</td>
+    <td>Interno</td>
+    <td>TCP</td>
+    <td>25</td>
+    <td>> 123</td>
+    <td>Sim</td>
+    <td>Permitir</td>
+  </tr>
+   <tr>
+    <td>E</td>
+    <td>Qualquer</td>
+    <td>Qualquer</td>
+    <td>Qualquer</td>
+    <td>Qualquer</td>
+    <td>Qualquer</td>
+    <td>Qualquer</td>
+    <td>Qualquer</td>
+    <td>Negar</td>
+  </tr>
+</table>
+
+<p style="text-align:left">Nesta página encontra-se um exemplo de tabela de regras, sendo esta exatamente a utilizada no simulador. Como pode ser visto, há diversos campos na tabela de regras sendo importante ressaltar que caso qualquer um deles seja ignorado, um ataque pode ocorrer exatamente neste termo. Para uma melhor visualização de como isso pode acontecer, verifique os diferentes números de atributos do simulador.<br/><br/>
+
+Há ainda duas maneiras de esta tabela ser implementada, uma delas sendo chamada de <b>default deny</b>, ou seja, tudo o que não é explicitamente permitido é proibido. Isto pode ser visto através da regra E.<br/><br/>
+
+Outra abordagem seria o chamado <b>default permit</b>, ou seja, tudo o que não é explicitamente proibido é permitido. Esta é muito menos segura do que a primeira abordagem, porém ela pode acabar sendo preferível ao <b>default deny</b> por causar menos insatisfação no cliente. Por vários motivos o <b>default deny</b> pode levar a vários dos pacotes do usuário a serem recusados, o que leva qualquer um a reclamar.</p>
+
+<a href="roteador.html">
+	<img src="images/seta_esq.png" alt="Anterior" style="width:5%;height;5%;position:absolute;left:20px;">
+</a>
+<a href="inicial.html">
+	<img src="images/seta_dir.png" alt="Proximo" style="width:5%;height;5%;position:absolute;right:20px;">
+</a>
+</body>
+
+</html>
