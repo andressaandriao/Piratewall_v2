@@ -1,22 +1,49 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-<link rel="stylesheet" href="styles.css">
-<title>Piratewall</title>
-</head>
+	<head>
+		<link rel="stylesheet" href="styles.css">
+		<title>Piratewall</title>
+		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Nunito|Patrick+Hand+SC" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+    	<script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+		<script src='javascript.js'></script>
+	</head>
 
-<body>
-<h1>Simulador: Filtro de Pacotes Tradicional</h1>
-<h2>Escolha o número de atributos que você deseja em sua tabela:<br/></h2>
-	<input type="button" onclick="window.location.href='simulador_6op.html'" value="6 atributos" style="width:200px;background:#01A9DB;color:white;height:45px;font-size:20px;position:absolute;left:43%;top:150px;">
-	<input type="button" onclick="window.location.href='simulador_7op.html'" value="7 atributos" style="width:200px;background:#01A9DB;color:white;height:45px;font-size:20px;position:absolute;left:43%;top:205px;">
-	<input type="button" onclick="window.location.href='simulador_8op.html'" value="8 atributos" style="width:200px;background:#01A9DB;color:white;height:45px;font-size:20px;position:absolute;left:43%;top:260px;">
+	<body>
+
+		<div id="menuBar">
+			<ul>
+        		<li><a href="inicial.html">Inicial</a></li>
+        		<li><a href="firewalls.html">Teoria</a></li>
+        		<li><a href="opcoes_simulador.html">Simulador</a></li>
+	    		<li><a href="comousar.html">Como usar</a></li>
+	    		<li><a href="creditos.html">Créditos</a></li>
+			</ul>
+		</div>
+
+		<h1>Simulador: Filtro de Pacotes Tradicional</h1>
+		<h2>Escolha o número de atributos que você deseja em sua tabela:<br/></h2>
+		<a href="simulador_6op.html">
+			<div class="opButton">6 atributos
+			</div>
+		</a>
+		<a href="simulador_7op.html">
+			<div class="opButton">7 atributos
+			</div>
+		</a>
+		<a href="simulador_8op.html">
+			<div class="opButton">8 atributos
+			</div>
+		</a>
 	
-<a href="inicial.html">
-	<img src="images/seta_esq.png" alt="Anterior" style="width:5%;height;5%;position:absolute;left:20px;top:310px;">
-</a>
+		<a href="inicial.html">
+			<img src="images/seta_esq.png" alt="Anterior" class="navBackButton">
+		</a>
+
+		<div id="footer">
+		</div>
 	
-</body>
+	</body>
 
 </html>

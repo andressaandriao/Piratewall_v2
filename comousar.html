@@ -1,68 +1,83 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-<link rel="stylesheet" href="styles.css">
-<title>Piratewall</title>
-</head>
+	<head>
+		<link rel="stylesheet" href="styles.css">
+		<title>Piratewall</title>
+		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Nunito|Patrick+Hand+SC" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+    	<script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+		<script src='javascript.js'></script>
+	</head>
 
-<body>
-<h1>Como usar</h1>
-<p style="text-align:left">
-Nesta seção você encontra detalhes sobre como utilizar o simulador! Poucas explicações sobre  <i>firewalls</i> serão dadas aqui, 
-por isso é recomendado que você siga o <b>tutorial</b> caso não seja muito familiarizado com o assunto!</p>
+	<body>
 
-<p style="text-align:left">
-<b>1. Escolha o número de atributos de sua tabela de regras.</b> <br/>
-As opções dadas nesta parte são:<br/>
-* 6 atributos<br/>
-* 7 atributos<br/>
-* 8 atributos<br/>
-A diferença entre elas será quais campos do pacote estarão disponíveis para avaliação e ela serve para que seja possível ver como
-um simples campo não utilizado pode mudar muito a segurança do sistema.<br/><br/>
+		<div id="menuBar">
+			<ul>
+        		<li><a href="inicial.html">Inicial</a></li>
+        		<li><a href="firewalls.html">Teoria</a></li>
+        		<li><a href="opcoes_simulador.html">Simulador</a></li>
+	    		<li><a href="comousar.html">Como usar</a></li>
+	    		<li><a href="creditos.html">Créditos</a></li>
+			</ul>
+		</div>
 
-<img src="images/escolhaAtributos.png" alt="Escolha de Atributos" style="width:50%;height;50%;position:relative;left:25%"></p>
+		<h1>Como usar</h1>
+		<p style="text-align:left">
+			Nesta seção você encontra detalhes sobre como utilizar o simulador! Poucas explicações sobre  <i>firewalls</i> serão dadas aqui, por isso é recomendado que você siga o <b>tutorial</b> caso não seja muito familiarizado com o assunto!
+		</p>
 
-<p style="text-align:left">
-<b>2. Adicione as regras em sua tabela de regras.</b> <br/>
-O simulador possui algumas regras predefinidas baseadas nos pacotes que serão enviados pelo simulador. Você pode escolher
-quais dessas regras você irá usar e a ordem em que elas aparecerão da maneira que preferir. É importante notar que a ordem
- das regras pode mudar o resultado final! <br/><br/>
+		<p style="text-align:left">
+			<b>1. Escolha o número de atributos de sua tabela de regras.</b> <br/>
+		As opções dadas nesta parte são:<br/>
+		* 6 atributos<br/>
+		* 7 atributos<br/>
+		* 8 atributos<br/>
+		A diferença entre elas será quais campos do pacote estarão disponíveis para avaliação e ela serve para que seja possível ver como
+		um simples campo não utilizado pode mudar muito a segurança do sistema.<br/><br/>
 
-<img src="images/escolhaRegras.png" alt="Escolha de Regras" style="width:50%;height;50%;position:relative;left:25%"><br/><br/>
+			<img src="images/escolhaAtributos.png" alt="Escolha de Atributos">
+		</p>
 
-O simulador é baseado em um <i>default deny</i>, ou seja, tudo o que não está definido, será negado. Isto é visível pela regra E, 
-que barra absolutamente todo tipo de pacote, permitindo que apenas o que as regras permitem possam passar pelo <i>firewall</i>.
-Outra maneira de implementar este sistema seria um <i>default permit</i>, ou seja, tudo o que não está definido, será aceito, que 
-possui um pior nível de segurança que o <i>default deny</i>.
-</p>
+		<p style="text-align:left">
+			<b>2. Adicione as regras em sua tabela de regras.</b> <br/>
+		O simulador possui algumas regras predefinidas baseadas nos pacotes que serão enviados pelo simulador. Você pode escolher quais dessas regras você irá usar e a ordem em que elas aparecerão da maneira que preferir. É importante notar que a ordem das regras pode mudar o resultado final! <br/><br/>
 
-<p style="text-align:left">
-<b>3. Inicie a simulação e/ou reinicie a qualquer momento.</b> <br/><br/>
+			<img src="images/escolhaRegras.png" alt="Escolha de Regras"><br/><br/>
 
-<img src="images/escolhaBotoes.png" alt="Escolha de Botões" style="width:30%;height;30%;position:relative;left:35%"><br/><br/>
+			O simulador é baseado em um <i>default deny</i>, ou seja, tudo o que não está definido, será negado. Isto é visível pela regra E, que barra absolutamente todo tipo de pacote, permitindo que apenas o que as regras permitem possam passar pelo <i>firewall</i>. Outra maneira de implementar este sistema seria um <i>default permit</i>, ou seja, tudo o que não está definido, será aceito, que possui um pior nível de segurança que o <i>default deny</i>.
+		</p>
 
-Para iniciar a simulação, basta clicar no botão verde <b>Começar</b> e prosseguir apertando o botão verde <b>Próximo</b>.<br/><br/>
+		<p style="text-align:left">
+			<b>3. Inicie a simulação e/ou reinicie a qualquer momento.</b> <br/><br/>
 
-<img src="images/escolhaBotoes2.png" alt="Escolha de Botões" style="width:30%;height;30%;position:relative;left:35%"><br/><br/>
+			<img src="images/escolhaBotoes.png" alt="Escolha de Botões" style="width:30%;height:30%"><br/><br/>
 
-Caso seja necessário reiniciar a simulação, a qualquer momento é possível realizar isso através do botão vermelho <b>Reiniciar</b>.
-</p>
+			Para iniciar a simulação, basta clicar no botão verde <b>Começar</b> e prosseguir apertando o botão verde <b>Próximo</b>.<br/><br/>
 
-<p style="text-align:left">
-<b>4. Tipos de pacotes enviados.</b><br/>
-A simulação possui dois tipos de pacotes, os verdes que são pacotes não nocivos enviados por alguma aplicação.<br/><br/>
+			<img src="images/escolhaBotoes2.png" alt="Escolha de Botões" style="width:30%;height:30%"><br/><br/>
 
-<img src="images/goodPackHowToUse.png" alt="Pacote não nocivo" style="width:50%;height;50%;position:relative;left:25%"><br/><br/>
+			Caso seja necessário reiniciar a simulação, a qualquer momento é possível realizar isso através do botão vermelho <b>Reiniciar</b>.
+		</p>
 
-Os pacotes vermelhos que se tratam de pacotes nocivos enviados por atacantes que aparecem no sistema como dois piratas.<br/><br/>
+		<p style="text-align:left">
+			<b>4. Tipos de pacotes enviados.</b><br/>
+		A simulação possui dois tipos de pacotes, os verdes que são pacotes não nocivos enviados por alguma aplicação.<br/><br/>
 
-<img src="images/badPackHowToUse.png" alt="Pacote nocivo" style="width:50%;height;50%;position:relative;left:25%">
-</p>
+			<img src="images/goodPackHowToUse.png" alt="Pacote não nocivo" style="width:50%;height:50%"><br/><br/>
 
-<a href="inicial.html">
-	<img src="images/seta_esq.png" alt="Anterior" style="width:5%;height;5%;position:absolute;left:20px;">
-</a>
-</body>
+			Os pacotes vermelhos que se tratam de pacotes nocivos enviados por atacantes que aparecem no sistema como dois piratas.<br/><br/>
+
+			<img src="images/badPackHowToUse.png" alt="Pacote nocivo">
+		</p>
+
+		<a href="inicial.html">
+			<img src="images/seta_esq.png" alt="Anterior" class="navBackButton">
+		</a>
+
+		<div id="footer">
+		</div>
+
+	</body>
 
 </html>

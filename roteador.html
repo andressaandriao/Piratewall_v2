@@ -1,29 +1,49 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-<link rel="stylesheet" href="styles.css">
-<title>Piratewall</title>
-</head>
+	<head>
+		<link rel="stylesheet" href="styles.css">
+		<title>Piratewall</title>
+		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Nunito|Patrick+Hand+SC" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+    	<script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+		<script src='javascript.js'></script>
+	</head>
 
-<body>
-<h1>Filtro de Pacotes: Estrutura</h1>
+	<body>
 
-<img src="images/Roteador.png" alt="Firewalls" style="width:70%;height:70%; position:relative;left:15%;">
+		<div id="menuBar">
+			<ul>
+        		<li><a href="inicial.html">Inicial</a></li>
+        		<li><a href="firewalls.html">Teoria</a></li>
+        		<li><a href="opcoes_simulador.html">Simulador</a></li>
+	    		<li><a href="comousar.html">Como usar</a></li>
+	    		<li><a href="creditos.html">Créditos</a></li>
+			</ul>
+		</div>
 
-<p style="text-align:left">
-Normalmente os filtros de pacotes, tanto os tradicionais quanto os com controle de estado, são implementados por roteadores que usualmente são posicionados na borda da rede interna. <br/><br/>
+		<h1>Filtro de Pacotes: Estrutura</h1>
 
-Cada um deles tem uma particularidade, sendo o filtro de pacotes com controle de estado um aprimoramento do filtro de pacotes tradicional. Para realizar este controle do que entra e sai da rede interna, os filtros possuem uma estrutura chamada <b>tabela de regras</b>, que possui regras condizentes aos campos existentes no pacote. Estas regras normalmente dizem respeito apenas as camadas de rede e transporte do pacote, deixando a camada de aplicação sem controle. Cada uma das regras terá duas opções: rejeitar o pacote ou aceitar o pacote.<br/><br/>
+		<img src="images/Roteador.png" alt="Firewalls" class="teoryImg">
 
-A diferença entre os dois filtros é que o com controle de estado possui uma estrutura a mais denominada <b>tabela de conexões</b>. Esta segunda tabela só permite a passagem de pacotes que tenham um conexão estabelecida com a rede interna, impedindo pacotes aleatórios que tenham "burlado a segurança" de entrar na rede. É lógico que este método também não é perfeito, mas normalmente é mais seguro, isto é, se as configurações forem bem feitas, pois elas são difíceis de serem implementadas e mais difíceis ainda de serem testadas pois há inúmeras possibilidades.
-</p>
-<a href="filtrodepacotes.html">
-	<img src="images/seta_esq.png" alt="Anterior" style="width:5%;height;5%;position:absolute;left:20px;">
-</a>
-<a href="tabeladeregras.html">
-	<img src="images/seta_dir.png" alt="Proximo" style="width:5%;height;5%;position:absolute;right:20px;">
-</a>
-</body>
+		<p style="text-align:left">
+			Normalmente os filtros de pacotes, tanto os tradicionais quanto os com controle de estado, são implementados por roteadores que usualmente são posicionados na borda da rede interna. <br/><br/>
+
+			Cada um deles tem uma particularidade, sendo o filtro de pacotes com controle de estado um aprimoramento do filtro de pacotes tradicional. Para realizar este controle do que entra e sai da rede interna, os filtros possuem uma estrutura chamada <b>tabela de regras</b>, que possui regras condizentes aos campos existentes no pacote. Estas regras normalmente dizem respeito apenas as camadas de rede e transporte do pacote, deixando a camada de aplicação sem controle. Cada uma das regras terá duas opções: rejeitar o pacote ou aceitar o pacote.<br/><br/>
+
+			A diferença entre os dois filtros é que o com controle de estado possui uma estrutura a mais denominada <b>tabela de conexões</b>. Esta segunda tabela só permite a passagem de pacotes que tenham um conexão estabelecida com a rede interna, impedindo pacotes aleatórios que tenham "burlado a segurança" de entrar na rede. É lógico que este método também não é perfeito, mas normalmente é mais seguro, isto é, se as configurações forem bem feitas, pois elas são difíceis de serem implementadas e mais difíceis ainda de serem testadas pois há inúmeras possibilidades.
+		</p>
+
+		<a href="filtrodepacotes.html">
+			<img src="images/seta_esq.png" alt="Anterior" class="navBackButton">
+		</a>
+		<a href="tabeladeregras.html">
+			<img src="images/seta_dir.png" alt="Proximo" class="navForButton">
+		</a>
+
+		<div id="footer">
+		</div>
+
+	</body>
 
 </html>

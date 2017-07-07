@@ -1,27 +1,46 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-<link rel="stylesheet" href="styles.css">
-<title>Piratewall</title>
-</head>
+	<head>
+		<link rel="stylesheet" href="styles.css">
+		<title>Piratewall</title>
+		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Nunito|Patrick+Hand+SC" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+    	<script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+		<script src='javascript.js'></script>
+	</head>
 
-<body>
-<h1>Firewalls</h1>
+	<body>
+		<div id="menuBar">
+			<ul>
+        		<li><a href="inicial.html">Inicial</a></li>
+        		<li><a href="firewalls.html">Teoria</a></li>
+        		<li><a href="opcoes_simulador.html">Simulador</a></li>
+	    		<li><a href="comousar.html">Como usar</a></li>
+	    		<li><a href="creditos.html">Créditos</a></li>
+			</ul>
+		</div>
 
-<img src="images/firewall.png" alt="Firewalls" style="width:70%;height:70%; position:relative;left:15%;">
+		<h1>Firewalls</h1>
 
-<p style="text-align:left">
-O <i>firewall</i> é basicamente um dispositivo que controla o tráfego que entra/sai de uma rede interna. Seu papel é impedir a saída de dados secretos bem como a entrada de usuários com intenções maliciosas. <br/><br/>
+		<img src="images/firewall.png" alt="Firewalls" class="teoryImg">
 
-Como podemos ver no esquema apresentado, o <i>firewall</i> funciona como uma barreira que impede alguns pacotes de serem encaminhados para os computadores da rede interna. O grande problema é que ele se trata apenas de uma barreira e, por isso, muitas vezes <i>firewalls</i> são utilizados em cada um dos computadores presentes na rede interna, além do(s) que toma(m) conta da rede inteira, para aumentar a segurança. 
-</p>
-<a href="inicial.html">
-	<img src="images/seta_esq.png" alt="Anterior" style="width:5%;height;5%;position:absolute;left:20px;">
-</a>
-<a href="hierarquia.html">
-	<img src="images/seta_dir.png" alt="Proximo" style="width:5%;height;5%;position:absolute;right:20px;">
-</a>
-</body>
+		<p style="text-align:left">
+			O <i>firewall</i> é basicamente um dispositivo que controla o tráfego que entra/sai de uma rede interna. Seu papel é impedir a saída de dados secretos bem como a entrada de usuários com intenções maliciosas. <br/><br/>
+
+			Como podemos ver no esquema apresentado, o <i>firewall</i> funciona como uma barreira que impede alguns pacotes de serem encaminhados para os computadores da rede interna. O grande problema é que ele se trata apenas de uma barreira e, por isso, muitas vezes <i>firewalls</i> são utilizados em cada um dos computadores presentes na rede interna, além do(s) que toma(m) conta da rede inteira, para aumentar a segurança. 
+		</p>
+
+		<a href="inicial.html">
+			<img src="images/seta_esq.png" alt="Anterior" class="navBackButton">
+		</a>
+		<a href="hierarquia.html">
+			<img src="images/seta_dir.png" alt="Proximo" class="navForButton">
+		</a>
+
+		<div id="footer">
+		</div>
+
+	</body>
 
 </html>
